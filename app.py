@@ -109,8 +109,13 @@ if(st.button("Submit")):
                 wrong_answer[find_index]=key
                 right_answer[find_index]=value
         try:
+            # Load credentials from environment variable
+            json_creds = os.getenv('USERDATASTORE_JSON')
+            if json_creds is None:
+                raise ValueError("USERDATASTORE_JSON environment variable is not set")
+            creds_dict = json.loads(json_creds)
             scope=['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
-            cre=ServiceAccountCredentials.from_json_keyfile_name('userdatastore-413415-90c757e71960.json',scope)
+            cre=ServiceAccountCredentials.from_json_keyfile_name(creds_dict,scope)
             client=gspread.authorize(cre)
             spreadsheet = client.open('quiz')
             spreadsheet.share('deepanshuantil4113@gmail.com', perm_type='user', role='writer')
