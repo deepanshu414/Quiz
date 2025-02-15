@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import gspread
+import os
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 st.set_page_config(page_title="Quiz",page_icon="https://static.vecteezy.com/system/resources/previews/017/349/652/non_2x/check-mark-and-cross-symbols-free-png.png")
